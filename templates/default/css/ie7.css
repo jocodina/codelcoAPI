@@ -1,0 +1,15 @@
+.main-header input.search{width:82%; height:19px;}
+.main-header nav .submenu{position:relative; z-index:9999999999;}
+.wraper-submenu{display:none !important}
+#slider .ohidden{position:relative;}
+.row.container{position:relative;}
+.sub-section{max-height: none; min-height: none;}
+table .estado-text{width:24px;}
+.monedas .columns{width:24%;}
+.asp{width:13%;}
+.primary-info-col{width:22%;}
+.original-value{height:auto;}
+.ficha .sub-section{display:block !important;}
+.little.big-asp-group .asp{width:32%;}
+.minimal-list{width:36%;}
+.lightbox.for-chart{left:32%; width:37%; right:auto; overflow:visible; position: absolute;}

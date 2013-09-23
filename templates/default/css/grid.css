@@ -1,0 +1,38 @@
+/*******************************************************************************
+Grilla *************************************************************************
+*******************************************************************************/
+.row { width: 100%; max-width: 1000px; margin: 0 auto; }
+.row:before, .row:after { content: ""; display: table; }
+.row:after { clear: both; }
+.row { *zoom: 1; }
+.row [class*="column"] {display: block;float: left; margin-right: 1.754%;}
+
+.column1{width:6.7255%;}
+.column2{width:15.205%}
+.column3{width:23.6845%}
+.column4{width:32.164%}
+.column5{width:40.6435%}
+.column6{width:49.123%}
+.column7{width:57.6025%}
+.column8{width:66.082%}
+.column9{width:74.5615%}
+.column10{width:83.041%}
+.column11{width:91.5205%}
+.column12{width:100%;float:none;}
+
+.column3{*width:21%;}
+.column4{*width:30%;}
+.column6{*width:47%;}
+.column8{*width:64%;}
+
+
+.row [class*="side-"] {display: block;float: left; margin-right: 4%;}
+.side-4{width:31.164%}
+.side-8{width:64.082%}
+
+.row [class*="primary-info-"] {display: block;float: left;}
+.primary-info-col{width:25%;}
+
+[class*="primary-info-"].last{ margin-right: 0px !important; }
+[class*="side-"].last{ margin-right: 0px !important; }
+[class*="column"].last{ margin-right: 0px !important; }
