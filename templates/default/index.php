@@ -3,7 +3,8 @@
     <div class="row container">
         <header class="inner-header">
             <h2>Proyectos Estructurales</h2>
-            <dl class="simbologia">
+            <dl class="simbologia home">
+                <span class="secondary-meta sim">Criterios de evaluación:</span>
                 <dt class="green-bg">E</dt>
                 <dd class="green-txt">Enfocado</dd>
                 <dt class="yellow-bg">D</dt>
@@ -23,8 +24,9 @@
                                 </header>
                                 <span class="secondary-meta">Monto Total(uK$)</span>
                                 <span class="value" data-montoTotal></span>
-                                <span class="secondary-meta">Noviembre 2013</span>
-                                <span class="value" data-avance></span>
+                                <span class="secondary-meta" data-avance></span>
+                                <span class="value" data-fechaAvance></span>
+                                <span class="secondary-meta mtop">Últimas Evaluaciones:</span>
                                 <div class="chart" data-proyect="01" data-mes="09" data-ano="2013">
                                     <img class="ajax-loader" src="http://codelco.ida.cl/templates/default/images/iconos/ajax-loader.gif" data-svg="http://codelco.ida.cl/templates/default/images/logo-codelco.png" alt="Portal de Avance de Proyectos" />
                                 </div>
@@ -39,8 +41,9 @@
                                 </header>
                                 <span class="secondary-meta">Monto Total(uK$)</span>
                                 <span class="value" data-montoTotal></span>
-                                <span class="secondary-meta">Noviembre 2013</span>
-                                <span class="value" data-avance></span>
+                                <span class="secondary-meta" data-avance></span>
+                                <span class="value" data-fechaAvance></span>
+                                <span class="secondary-meta mtop">Últimas Evaluaciones:</span>
                                 <div class="chart" data-proyect="02" data-mes="09" data-ano="2013">
                                     <img class="ajax-loader" src="http://codelco.ida.cl/templates/default/images/iconos/ajax-loader.gif" data-svg="http://codelco.ida.cl/templates/default/images/logo-codelco.png" alt="Portal de Avance de Proyectos" />
                                 </div>
@@ -55,8 +58,9 @@
                                 </header>
                                 <span class="secondary-meta">Monto Total(uK$)</span>
                                 <span class="value" data-montoTotal></span>
-                                <span class="secondary-meta">Noviembre 2013</span>
-                                <span class="value" data-avance></span>
+                                <span class="secondary-meta" data-avance></span>
+                                <span class="value" data-fechaAvance></span>
+                                <span class="secondary-meta mtop">Últimas Evaluaciones:</span>
                                 <div class="chart" data-proyect="03" data-mes="09" data-ano="2013">
                                     <img class="ajax-loader" src="http://codelco.ida.cl/templates/default/images/iconos/ajax-loader.gif" data-svg="http://codelco.ida.cl/templates/default/images/logo-codelco.png" alt="Portal de Avance de Proyectos" />
                                 </div>
@@ -71,8 +75,9 @@
                                 </header>
                                 <span class="secondary-meta">Monto Total(uK$)</span>
                                 <span class="value" data-montoTotal></span>
-                                <span class="secondary-meta">Noviembre 2013</span>
-                                <span class="value" data-avance></span>
+                                <span class="secondary-meta" data-avance></span>
+                                <span class="value" data-fechaAvance></span>
+                                <span class="secondary-meta mtop">Últimas Evaluaciones:</span>
                                 <div class="chart" data-proyect="01" data-mes="09" data-ano="2013">
                                     <img class="ajax-loader" src="http://codelco.ida.cl/templates/default/images/iconos/ajax-loader.gif" data-svg="http://codelco.ida.cl/templates/default/images/logo-codelco.png" alt="Portal de Avance de Proyectos" />
                                 </div>
@@ -87,8 +92,9 @@
                                 </header>
                                 <span class="secondary-meta">Monto Total(uK$)</span>
                                 <span class="value" data-montoTotal></span>
-                                <span class="secondary-meta">Noviembre 2013</span>
-                                <span class="value" data-avance></span>
+                                <span class="secondary-meta" data-avance></span>
+                                <span class="value" data-fechaAvance></span>
+                                <span class="secondary-meta mtop">Últimas Evaluaciones:</span>
                                 <div class="chart" data-proyect="02" data-mes="09" data-ano="2013">
                                     <img class="ajax-loader" src="http://codelco.ida.cl/templates/default/images/iconos/ajax-loader.gif" data-svg="http://codelco.ida.cl/templates/default/images/logo-codelco.png" alt="Portal de Avance de Proyectos" />
                                 </div>
@@ -103,8 +109,9 @@
                                 </header>
                                 <span class="secondary-meta">Monto Total(uK$)</span>
                                 <span class="value" data-montoTotal></span>
-                                <span class="secondary-meta">Noviembre 2013</span>
-                                <span class="value" data-avance>Avance de 47,5%</span>
+                                <span class="secondary-meta" data-avance></span>
+                                <span class="value" data-fechaAvance></span>
+                                <span class="secondary-meta mtop">Últimas Evaluaciones:</span>
                                 <div class="chart" data-proyect="03" data-mes="09" data-ano="2013">
                                     <img class="ajax-loader" src="http://codelco.ida.cl/templates/default/images/iconos/ajax-loader.gif" data-svg="http://codelco.ida.cl/templates/default/images/logo-codelco.png" alt="Portal de Avance de Proyectos" />
                                 </div>
@@ -126,8 +133,7 @@
         <article class="block medium-gray shadow-box clearfix">
             <header class="prelative">
                 <h3><a href="/cartera/" title="Ver Cartera de Directorio en detalle" rel="contents">Directorio</a></h3>
-                <span class="secondary-meta">Agosto 2013</span>
-                <a class="go-link top" href="/cartera/"  title="Ver Cartera de Directorio en detalle">Ver Detalle</a>
+                <a class="go-link top" href="/carteras/"  title="Ver Cartera de Directorio en detalle">Ver Detalle</a>
                 <aside>
                     <img class="ajax-loader" src="http://codelco.ida.cl/templates/default/images/iconos/ajax-loader.gif" data-svg="http://codelco.ida.cl/templates/default/images/logo-codelco.png" alt="Portal de Avance de Proyectos" />
                 </aside>
@@ -152,14 +158,13 @@
                         <img class="ajax-loader" src="http://codelco.ida.cl/templates/default/images/iconos/ajax-loader.gif" alt="Portal de Avance de Proyectos" />
                     </div>
                 </div>
-                <a class="go-link fright" href="/cartera/"  title="Ver Cartera de Directorio en detalle">Ver Detalle</a>
+                <a class="go-link fright" href="/carteras/"  title="Ver Cartera de Directorio en detalle">Ver Detalle</a>
             </div>
         </article>
         <article class="block medium-gray shadow-box clearfix">
             <header class="prelative">
                 <h3><a href="/cartera/" title="Ver Cartera de Directorio en detalle" rel="contents">Principales</a></h3>
-                <span class="secondary-meta">Agosto 2013</span>
-                <a class="go-link top" href="/cartera/"  title="Ver Cartera de Directorio en detalle">Ver Detalle</a>
+                <a class="go-link top" href="/carteras/"  title="Ver Cartera de Directorio en detalle">Ver Detalle</a>
                 <aside>
                     <img class="ajax-loader" src="http://codelco.ida.cl/templates/default/images/iconos/ajax-loader.gif" data-svg="http://codelco.ida.cl/templates/default/images/logo-codelco.png" alt="Portal de Avance de Proyectos" />
                 </aside>
@@ -184,7 +189,7 @@
                         <img class="ajax-loader" src="http://codelco.ida.cl/templates/default/images/iconos/ajax-loader.gif" alt="Portal de Avance de Proyectos" />
                     </div>
                 </div>
-                <a class="go-link fright" href="/cartera/"  title="Ver Cartera de Directorio en detalle">Ver Detalle</a>
+                <a class="go-link fright" href="/carteras/"  title="Ver Cartera de Directorio en detalle">Ver Detalle</a>
             </div>
         </article>
     </div>

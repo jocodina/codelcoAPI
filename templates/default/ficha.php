@@ -87,7 +87,8 @@
                     <span class="estado-text">D</span>
                 </article>
                 <article class='asp empty'>
-                    <h4>Aspecto no evaluado</h4>
+                    <h4>Alcance de Gestión</h4>
+                    <p>No Aplica N/A</p>
                 </article>
                 <article class='asp desviado'>
                     <div class='asp-wrapp equal-asp'>
@@ -98,7 +99,8 @@
                     <span class="estado-text">D</span>
                 </article>
                 <article class='asp empty'>
-                    <h4>Aspecto no evaluado</h4>
+                    <h4>Económicos</h4>
+                    <p>No Aplica N/A</p>
                 </article>
             </aside>
         </div>
@@ -355,7 +357,8 @@
                 <div class="big-asp-group clearfix little">
                    <article class="asp empty medium-gray">
                        <div class="asp-wrapp">
-                           <h3>Aspecto no evaluado</h3>
+                           <h3>Alcance de Gestión</h3>
+                           <p>No Aplica N/A</p>
                        </div>
                    </article>
                    <article class="asp enfocado medium-gray">
@@ -388,7 +391,8 @@
                    </article>
                     <article class="asp empty medium-gray">
                        <div class="asp-wrapp">
-                           <h3>Aspecto no evaluado</h3>
+                           <h3>Económicos</h3>
+                           <p>No Aplica N/A</p>
                        </div>
                    </article>
                 </div>

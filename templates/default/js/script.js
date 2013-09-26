@@ -220,7 +220,7 @@ window.log=function(){log.history=log.history||[];log.history.push(arguments);if
              * Crea el gráfico utilizando API de Highcharts
              */ 
             makechart : function($item, jsonData){
-                    var estado;
+                    var estado, estadoName;
                     var color;
                     var $parentItem = $item.parent().parent();
                     var $rotulo = $item.next();
@@ -228,48 +228,51 @@ window.log=function(){log.history=log.history||[];log.history.push(arguments);if
                     var $ficha = $('#ficha-info');
                     var valores = methods.separateValues(jsonData.valores, 'val');
                     var meses = methods.separateValues(jsonData.valores, 'meses');
+                    var estados = methods.separateValues(jsonData.valores, 'estados');
                     var arrow = jsonData.tendencia;
+                    var valorSet;
                     
                     $item.next().removeClass('up').removeClass('down').addClass(arrow);
-
                     valores = $.map(valores, function(value, index){
-                                  estado = parseInt(value),
+                                  estado = estados[index],
+                                  valorSet = isNaN(parseInt(value, 10)) ? null : parseInt(value, 10);
                                   color = "#6BAD3F";
-                                  if(estado <= 3){
+                                  
+                                  
+                                  
+                                  if(estado === 'altamente desviado'){
                                       color = '#B82A34';
                                   }
-                                  else if(estado > 3 && estado <= 6){
+                                  else if(estado === 'desviado'){
                                       color = '#F09C28';
                                   }
                                   return {
-                                      name : value.name,
-                                      y: estado,
+                                      y: valorSet,
+                                      total: valores.length - 1,
                                       marker: {
+                                        estado: estado,  
                                         fillColor: color,
                                         lineWidth: 0,
                                         lineColor: null // inherit from series
                                      }
                                   };
                                 });
-                                
-                    var rotuloEstado;
-                    if(estado > 6){
-                        $parentItem.addClass('enfocado').removeClass('desviado').removeClass('altamente-desviado');;
-                        $rotulo.text('Enfocado');
-                        $ficha.addClass('enfocado').removeClass('desviado').removeClass('altamente-desviado');
-                        $item.parents('.lightbox').find('.asp-wrapp').addClass('enfocado');
-                    }else if(estado > 3 && estado <= 6){
-                        $parentItem.addClass('desviado').removeClass('enfocado').removeClass('altamente-desviado');;
-                        $rotulo.text('Desviado');
-                        $ficha.addClass('desviado').removeClass('enfocado').removeClass('altamente-desviado');
-                        $item.parents('.lightbox').find('.asp-wrapp').addClass('desviado');
-                    }else if(estado <= 3){
-                        $parentItem.addClass('altamente-desviado').removeClass('desviado').removeClass('enfocado');;
-                        $rotulo.text('Altamente desviado');
-                        $ficha.addClass('altamente-desviado').removeClass('desviado').removeClass('enfocado');
-                        $item.parents('.lightbox').find('.asp-wrapp').addClass('altamente-desviado');
+                    $parentItem.removeClass('desviado').removeClass('altamente-desviado').removeClass('enfocado');
+                    $ficha.removeClass('desviado').removeClass('altamente-desviado').removeClass('enfocado');
+                    if(estado === "altamente desviado"){
+                        $parentItem.addClass('altamente-desviado');
+                    }else{
+                        $parentItem.addClass(estado);
                     }
+                    $ficha.addClass(estado);
+                    
+                    $item.parents('.lightbox').find('.asp-wrapp').addClass(estado);
+                    $rotulo.text(estado.substr(0, 1).toUpperCase() + estado.substr(1));
                     $rotulo.addClass(tendencia);
+                    
+                    if(oldIE){
+                        $item.css('border-top','3px solid '+ color);
+                    }
                     
                     color = oldIE ? '#ffffff' : color;
                     
@@ -279,6 +282,28 @@ window.log=function(){log.history=log.history||[];log.history.push(arguments);if
                             plotBorderColor: '#ECECEC',
                             margin: [0, 5, 0, 5],
                             backgroundColor: null
+                        },
+                        tooltip: {
+                            formatter: function() {
+                                return 'Evaluación de '+ this.point.category +':<br/> <b>'+ this.point.marker.estado +'</b>';
+                            }
+                        },
+                        plotOptions: {
+                            series: {
+                                dataLabels: {
+                                    enabled: true,
+                                    formatter: function(){
+                                        if(this.point.x === this.point.total){
+                                          var cat = this.point.category.substring(0,3);
+                                          return cat;  
+                                        }    
+                                    },
+                                    crop: false,
+                                    align: 'right',
+                                    color: '#999999',
+                                    backgroundColor: 'rgba(252, 255, 255, 0.8)'
+                                }
+                            }
                         },
                         credits: {
                             enabled: false
@@ -374,18 +399,32 @@ window.log=function(){log.history=log.history||[];log.history.push(arguments);if
                     }
             },
             separateValues : function(datos, retorno){
-                var valores = new Array();
-                var meses = new Array();
+                var valores = [];
+                var estados = [];
+                var valoresReal = [];
+                var meses = [];
                 var cont = 0;
+              
                 $.each(datos,function(key, val){//Separa los valores y los meses en arrays diferentes
-                    valores[cont] = val; 
-                    meses[cont] = key;
+                    valores.push(val); 
+                    meses.push(key);
                     cont++;
                 });
-                if(retorno === 'val')
-                    return valores;
-                else(retorno === 'meses')
+                if(retorno === 'val' || retorno === 'estados'){
+                    cont = 0;
+                    $.each(valores,function(key, val){//Separa los valores y los meses en arrays diferentes
+                        valoresReal.push(val.valor);
+                        estados.push(val.evaluacion);
+                        cont++;
+                    });
+                    if(retorno === 'val')
+                        return valoresReal;
+                    else
+                        return estados;
+                }else if(retorno === 'meses'){
                     return meses;
+                }
+                    
             },
             setTreemap : function($containers){
                 
@@ -420,10 +459,10 @@ window.log=function(){log.history=log.history||[];log.history.push(arguments);if
                     sumaTotal = sumaTotal + value.montoTotal;
                     sumaAnual = sumaAnual + value.montoAnual;
                     cont++;
-                    if(value.valor <= 3){
+                    if(value.evaluacion === 'altamente desviado'){
                         altamenteDesviados += '<li><a href="'+ value.url +'" title="Ver ficha detallada de proyecto '+ value.label +'" rel="contents">'+ value.label +'</a></li>'
                         contAD++;
-                    }else if(value.valor > 3 && value.valor <= 6){
+                    }else if(value.evaluacion === 'desviado'){
                         desviados += '<li><a href="'+ value.url +'" title="Ver ficha detallada de proyecto '+ value.label +'" rel="contents">'+ value.label +'</a></li>'
                         contD++;
                     }
@@ -459,9 +498,9 @@ window.log=function(){log.history=log.history||[];log.history.push(arguments);if
                 
                 $container.treemap(jsonData, {
                         nodeClass: function(node, box){
-                            if(node.valor <= 3){
+                            if(node.evaluacion === 'altamente desviado'){
                                     return 'minor';
-                            }else if(node.valor > 3 && node.valor <= 6){
+                            }else if(node.evaluacion === 'desviado'){
                                     return 'middle';
                             }
                             return 'major';
@@ -480,8 +519,6 @@ window.log=function(){log.history=log.history||[];log.history.push(arguments);if
                         smallestFontSize: 12, // If your label doesn't fit below this text size, it isn't added
                         startingFontSize: 12 // Labels start this size (in px) and may be smaller to accommodate text
                 });
-                
-                
             },
             deploySubMenu : function ($submenu){
                 $submenu.on('mouseenter', function( event ){
@@ -569,27 +606,26 @@ window.log=function(){log.history=log.history||[];log.history.push(arguments);if
             },
            makeSparklines : function($container, jsonData){
                 var valores = methods.separateValues(jsonData.valores, 'val');
-                var lastValue = valores[valores.length - 1];
-                var color = "#6BAD3F";
+                var evaluaciones = methods.separateValues(jsonData.valores, 'estados');
+                var lastValue = evaluaciones[valores.length - 1];
+                var color = '#999999';
                 var estado = 'enfocado';
-                var tendencia = jsonData.tendencia;
                 
-                  if(lastValue <= 3){
+                if(lastValue === 'altamente desviado'){
                       color = '#B82A34';
                       estado = 'altamente-desviado';
                   }
-                  else if(lastValue > 3 && lastValue <= 6){
+                  else if(lastValue === 'desviado'){
                       color = '#F09C28';
                       estado = 'desviado';
-                  }
-
+                 }
+                
                 $container.parents('td').addClass(estado);
                 $container.parents('tr').find('td:first-child').addClass(estado);
-                $container.next().addClass(tendencia);
 
                 $container.sparkline(valores, {
                     type: 'line',
-                    width: '35',
+                    width: '60',
                     height: '25',
                     lineWidth: 2,
                     lineColor: color,
@@ -603,14 +639,14 @@ window.log=function(){log.history=log.history||[];log.history.push(arguments);if
                     spotRadius: 0});
 
                 var nextTend = $container.parents('tr').find('.future-tend');
-                var nextValue = jsonData.valorFuturo;
+                var nextValue = jsonData.evaluacionFutura;
                 var nextArrow = jsonData.tendenciaFutura;
                 var nextEstado = 'enfocado';
 
-                if(nextValue <= 3){
+                if(nextValue === 'altamente desviado'){
                       nextEstado = 'altamente-desviado';
                   }
-                  else if(nextValue > 3 && nextValue <= 6){
+                  else if(nextValue === 'desviado'){
                       nextEstado = 'desviado';
                   }
                nextTend.parent().addClass(nextEstado);
@@ -1253,7 +1289,7 @@ window.log=function(){log.history=log.history||[];log.history.push(arguments);if
         }
         Modernizr.load([{
             test : $('.chart').length || $('.treemap'),
-            yep : ['http://codelco.ida.cl/templates/default/js/highcharts.js'],
+            yep : 'http://codelco.ida.cl/templates/default/js/highcharts.js',
             callback : function(test, key){
                 if(test){
                     methods.setChart($('.chart'));
@@ -1261,7 +1297,7 @@ window.log=function(){log.history=log.history||[];log.history.push(arguments);if
             }
         },{
             test : $('.treemap').length,
-            yep : ['http://codelco.ida.cl/templates/default/js/treemaps.js'],
+            yep : 'http://codelco.ida.cl/templates/default/js/treemaps.js',
             callback : function(test, key){
                 if(test){
                     methods.setTreemap($('.treemap'));
@@ -1269,7 +1305,7 @@ window.log=function(){log.history=log.history||[];log.history.push(arguments);if
             }
         },{
             test : $('.sparklines').length,
-            yep : ['http://codelco.ida.cl/templates/default/js/sparklines.js'],
+            yep : 'http://codelco.ida.cl/templates/default/js/sparklines.js',
             callback : function(test, key){
                 if(test){
                     methods.setSparklines($('.sparklines'));
@@ -1277,7 +1313,7 @@ window.log=function(){log.history=log.history||[];log.history.push(arguments);if
             }
         },{
             test : $('.daTable').length,
-            yep : ['http://codelco.ida.cl/templates/default/js/stupidtable.js'],
+            yep : 'http://codelco.ida.cl/templates/default/js/stupidtable.js',
             callback : function(test, key){
                 if(test){
                    $('.daTable').stupidtable({

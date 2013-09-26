@@ -139,6 +139,7 @@ blockquote{
 .inner-header{overflow:hidden;}
 .inner-header h2{display:block; float:left; margin-right:2%;}
 .simbologia {float:right; width:42%;}
+.simbologia.home{width:59%;}
 .simbologia dt{padding:3px 7px; color:#FFF; font-size:1em; font-weight: bold; display:block; float:left; margin-right:2%;}
 .simbologia dd{font-size: 0.9em; display:inline; float:left; font-weight: bold; margin:0; margin-right:4%; padding:3px 0;}
 .simbologia dd:last-child{margin-right:0;}
@@ -218,6 +219,9 @@ img{max-width: 100%; height:auto;}
 
 .secondary-meta{font-weight: normal; color:#444; margin-bottom:5px; line-height: 130%; display:block;}
 .secondary-meta.in-header{color:#847D6C; float:left; padding-top:15px;}
+.secondary-meta.mtop{margin-top:15px; padding-top:10px; border-top:1px solid #E9E9E9}
+.secondary-meta.sim{color:#999; font-size:12px; float:left; margin-right:10px; padding-top:3px;}
+
 .value{font-weight: bold; color:#4C463F; margin:0; margin-bottom:10px; font-size: 1.28em; line-height: 70%; display:block;}
 .value.secondary{font-size:1em; font-weight: normal; line-height: 140%;}
 .original-value{
@@ -372,7 +376,7 @@ Slider *********************************************************************
 #slider .slider-ul > li:last-child{box-shadow:none;}
 #slider .slider-ul > li:nth-child(2n){background:#FDF9F2;}
 #slider header{border-bottom:1px solid #E9E9E9; margin-bottom:10px;}
-#slider .chart{height:100px; margin-top: 15px;}
+#slider .chart{height:100px; margin-top: 5px;}
 .chart + .estado-tex {margin:0 5px;}
 t, .chart-lightbox + .estado-text{margin:0 5px 20px 5px;}
 .treemap-node .chart-lightbox{height:150px; margin-top:15px; width:100%;}
@@ -559,7 +563,7 @@ Tablas ****************************************************************
 *******************************************************************************/
 .swiper-scrollbar {width: 100%;height: .main-header h14px;position: absolute;left: 0;bottom: 5px;z-index: 1;}
 .swipe{overflow:hidden;}
-.swiper-slide {width: 898px;}
+.swiper-slide {width: 918px;}
 table{min-width:890px}
 table{margin:10px 0; border-collapse:separate;}
 table.secondary{border-spacing: 0 1px;}
@@ -618,12 +622,12 @@ table td.enfocado,
 table td.desviado,
 table td.altamente-desviado{border:0 none; border-left:1px solid #E9E9E9;}
 
-table .estado-text{width:34px; height:25px; background-size:10px 10px; background-position: 85% 11px; display:inline-block;}
+table .estado-text{width:10px; height:25px; background-size:10px 10px; background-position: 85% 11px; display:inline-block; padding:5px 0;}
 table .estado-text.right{margin-left:5px;}
 table .estado-text.left{float:left; margin-right:5px;}
-table .estado-text.left + a{display:inline-block; padding-top:3px;}
+table .estado-text.left + a{display:inline-block; padding-top:3px; float:left; margin-left:10px;}
 
-table .sparklines{width:45px; height:35px;}
+table .sparklines{width:60px; height:35px;}
 
 .reformulado{background:#F47E00; color:#FFF; font-size:0.857em; padding:3px; margin-left:10px;}
 .reformulado.first{margin-left:0px; margin-right:10px;}
@@ -680,7 +684,8 @@ Fichas *********************************************************************
 .asp-wrapp{padding:10px; min-height:110px; position:relative; outline:1px solid #EBEBEB;}
 .asp.empty{background:#FBFBFB; min-height:130px; padding:10px; margin-top:3px; z-index:1}
 .asp h4{font-size: 1em; color:#444; font-weight: normal; font-family: sans-serif;}
-.asp.empty h4{color:#C2C2C2;}
+.asp.empty h4, .asp.empty p{color:#C2C2C2;}
+.asp.empty p{font-size:12px; position:absolute; bottom:10px;}
 .asp .lighbox-button{right:10px; bottom:10px;}
 .asp .estado-text{font-size:1em;}
 
@@ -826,7 +831,7 @@ and (min-width : 801px) {
     .navigationMenu.fixed nav{background-image:none;}
     .svg .navigationMenu.fixed nav{background-image: none;}
     .navigationMenu.fixed nav > ul{padding-left:0; float:none;}
-    .simbologia{width:50%;}
+    .simbologia{width:100%;}
 }
 
 
@@ -925,15 +930,16 @@ and (max-width : 640px) {
     .column6.bordify{padding-top:20px; border-top:1px solid #EBEBEB; border-left:0 none; padding-left:0;}
     .big-asp-group .asp, .big-asp-group.little .asp{width:100%; float:none;}
     .big-asp-group{margin-bottom:0;}
+    .secondary-meta.sim{display:none;}
 }
 
 /*******************************************************************************
-Smartphones Horizontal********************************************************************
+Smartphones Vertical********************************************************************
 *******************************************************************************/
 @media only screen
-and (max-width : 640px)
-and (min-width : 480px){
+and (max-width : 480px){
     
     .only-on-h-phones{display:block !important;}
-    
+    .simbologia dt, .simbologia dd{margin-top:5px;}
+    .simbologia dt{clear:both;}
 }
